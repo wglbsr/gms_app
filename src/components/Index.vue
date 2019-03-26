@@ -18,6 +18,9 @@
     <grid-item label="告警记录" :link="{ path: '/alarmTable'}" class="grid-item">
       <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/table.png">
     </grid-item>
+    <grid-item label="保养记录" :link="{ path: '/maintainTable'}" class="grid-item">
+      <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/table.png">
+    </grid-item>
     <grid-item label="联系人列表" :link="{ path: '/contactTable'}" class="grid-item">
       <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/contact_index.png">
     </grid-item>

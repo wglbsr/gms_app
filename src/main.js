@@ -58,14 +58,17 @@ Vue.component('checker-item', CheckerItem);
 
 import Home from './view/Home'
 import API_DYNY from "./DYNY_GMS_API.vue"
-import './assets/style/globle.css'
+import api_v2 from "./assets/api/v2.js"
 
+import './assets/style/globle.css'
+Vue.prototype.API_V2 = api_v2;
 Vue.prototype.API_DYNY = API_DYNY;
 //油机
 const generatorTable = r => require.ensure([], () => r(require('./view/generator/generatorTable.vue')), 'generatorTable');
 const generatorLocations = r => require.ensure([], () => r(require('./view/generator/generatorLocations.vue')), 'generatorLocations');
 const generatorStatus = r => require.ensure([], () => r(require('./view/generator/generatorStatus.vue')), 'generatorStatus');
 const generatorInfo = r => require.ensure([], () => r(require('./view/generator/generatorInfo.vue')), 'generatorInfo');
+const maintainLogCreate = r => require.ensure([], () => r(require('./view/generator/maintainLogCreate.vue')), 'maintainLogCreate');
 const GeneratorModeSwitch = r => require.ensure([], () => r(require('./view/generator/coms/GeneratorModeSwitch.vue')), 'GeneratorModeSwitch');
 
 //入口
@@ -75,6 +78,8 @@ const Index = r => require.ensure([], () => r(require('./components/Index.vue'))
 const fuelTable = r => require.ensure([], () => r(require('./view/record/fuelTable.vue')), 'fuelTable');
 const generateTable = r => require.ensure([], () => r(require('./view/record/generateTable.vue')), 'generateTable');
 const alarmTable = r => require.ensure([], () => r(require('./view/record/alarmTable.vue')), 'alarmTable');
+const maintainTable = r => require.ensure([], () => r(require('./view/record/maintainTable.vue')), 'maintainTable');
+
 //用户
 const myInfo = r => require.ensure([], () => r(require('./view/user/myInfo.vue')), 'myInfo');
 const changePassword = r => require.ensure([], () => r(require('./view/user/changePassword.vue')), 'changePassword');
@@ -169,6 +174,14 @@ const routes = [
         meta: {
           title: '油机详情'
         }
+      },
+      {
+        path: '/generatorStatus/maintainLogCreate',
+        name: 'maintainLogCreate',
+        component: maintainLogCreate,
+        meta: {
+          title: '保养记录'
+        }
       }, {
         path: '/Index',
         name: 'Index',
@@ -196,6 +209,13 @@ const routes = [
         component: stationTable,
         meta: {
           title: '基站列表'
+        }
+      }, {
+        path: '/maintainTable',
+        name: 'maintainTable',
+        component: maintainTable,
+        meta: {
+          title: '保养记录'
         }
       }, {
         path: '/stationInfo',
