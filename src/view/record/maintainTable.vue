@@ -6,11 +6,11 @@
                 <group>
                     <divider>总数:{{totalNum}},当前{{this.maintainLogData.length}}</divider>
                     <div v-for="(item, index) in maintainLogData">
-                        <cell :title="item.generatorNo" :inline-desc="'操作人:'+item.username"
+                        <cell :title="item.generatorNo" :inline-desc="item.createTime|translateTime"
                               class="group-data-cell">
                             <!--基站编码:{{item.stationNo|translateText}}<br>-->
-                            <!--基站名称:{{item.stationName|translateText}}<br>-->
-                            {{item.createTime|translateTime}}
+                            <!--基站名称:{{item.content|translateText}}<br>-->
+                            <!--{{item.createTime|translateTime}}-->
                         </cell>
                     </div>
                 </group>
@@ -29,7 +29,6 @@
                 onFetching: false,
                 maintainLogData: [],
                 customerNo: sessionStorage.getItem("usercus"),
-                onlineLabel: "",
                 totalNum: 0,
                 pageNum: 0,
                 pageSize: 20,
@@ -79,6 +78,7 @@
                 if (this.onFetching) {
                     return;
                 }
+
                 let params = {customerNo: this.customerNo, pageSize: this.pageSize, pageNum: this.pageNum};
                 if (this.condition) {
                     params = Object.assign(params, this.condition);
@@ -88,6 +88,12 @@
                 } else {
                     this.pageNum++;
                 }
+                if (this.maintainLogData.length >= this.totalNum && this.pageNum != 1) {
+                    this.$vux.toast.show({
+                        text: '已全部加载!'
+                    });
+                    return;
+                }
                 this.onFetching = true;
                 this.$http.post(this.API_V2.maintainLog.select.default, params, {emulateJSON: true}).then(res => {
                     this.totalNum = res.body.totalNum;
@@ -96,21 +102,12 @@
                     } else {
                         this.maintainLogData = res.body.data;
                     }
-                    if (this.maintainLogData.length >= res.body.totalNum) {
-                        this.$vux.toast.show({
-                            text: '已全部加载!'
-                        });
-                        return;
-                    }
-                    this.onFetching = false;
-                    if (callback instanceof Function) {
-                        callback(2);
-                    }
+
                 }).catch(function (error) {
+
+                }).finally(function () {
                     this.onFetching = false;
-                    if (callback instanceof Function) {
-                        callback(2);
-                    }
+                    callback && callback(2);
                 });
             }
         }
