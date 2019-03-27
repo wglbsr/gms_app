@@ -72,6 +72,12 @@
                 } else {
                     delete this.condition.keyWord;
                 }
+                if (params.startDate) {
+                    params.startDate = params.startDate * 1000;
+                }
+                if (params.endDate) {
+                    params.endDate = params.endDate * 1000;
+                }
                 this.getMaintainLogData(true, null);
             },
             getMaintainLogData(refresh, callback) {
