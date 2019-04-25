@@ -49,18 +49,19 @@
           });
           return;
         }
-        this.$http.post(this.API_DYNY.GMS_DOMAIN + "ems/users/login.do", {
+        this.$http.post(this.API_DYNY.GMS_DOMAIN + "login", {
           username: this.username,
           password: this.password
         }, {emulateJSON: true}).then(res => {
-          if (res.body.result == "true") {
+          if (res.data.result) {
             let user = res.body.username;
             localStorage.setItem('user', user);
             localStorage.setItem('username', this.username);
             localStorage.setItem('password', this.password);
             sessionStorage.setItem('user', user);
-            sessionStorage.setItem('userLevel', res.body.userlevel);
-            sessionStorage.setItem('usercus', res.body.usercus);
+            sessionStorage.setItem('AUTH_TOKEN', res.data.data.AUTH_TOKEN);
+            sessionStorage.setItem('userLevel', res.data.data.userlevel);
+            sessionStorage.setItem('usercus', res.data.data.usercus);
             this.$router.push('/');
           } else {
             this.$vux.toast.show({

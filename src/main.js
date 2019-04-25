@@ -343,6 +343,10 @@ Vue.http.interceptors.push((request, next) => {
   let customerNo = sessionStorage.getItem("customerNo");
   let username = sessionStorage.getItem("user");
   let userLevel = sessionStorage.getItem("userLevel");
+  let token = sessionStorage.getItem("AUTH_TOKEN");
+  if (token) {
+    request.headers.set('AUTH_TOKEN', token)
+  }
   if (!request.body.customerNo) {
     request.body.customerNo = customerNo;
   }

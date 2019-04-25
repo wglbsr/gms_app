@@ -1,7 +1,8 @@
 <template>
     <div style="width: 100%">
         <group>
-            <x-textarea title="保养内容" v-model="content" rows="16" style="margin-bottom: 15px;"></x-textarea>
+            <selector title="保养类型:" :options="list" v-model="maintainType"></selector>
+            <x-textarea title="保养内容:" v-model="content" rows="16" style="margin-bottom: 15px;"></x-textarea>
         </group>
         <commit-button cancelText="返回" commitText="提交" style="margin-top: 15px;" @cancel="cancel"
                        @commit="submit"></commit-button>
@@ -16,6 +17,8 @@
         components: {CommitButton},
         data() {
             return {
+                maintainType: 99,
+                list: [{key: '1', value: '更换机油'}, {key: '99', value: '其他'}],
                 generatorNo: this.$route.query.generatorNo,
                 username: sessionStorage.getItem("user"),
                 content: "",
@@ -23,7 +26,7 @@
         },
         methods: {
             submit() {
-                let params = {generatorNo: this.generatorNo, username: this.username};
+                let params = {generatorNo: this.generatorNo, username: this.username, maintainType: this.maintainType};
                 let that = this;
                 if (!that.content) {
                     that.$vux.toast.show({

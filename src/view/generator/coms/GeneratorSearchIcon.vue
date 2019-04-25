@@ -18,6 +18,11 @@
           <checker-item value="1" style="width:35%">已激活</checker-item>
           <checker-item value="2" style="width:35%">已停用</checker-item>
         </checker>
+<!--        <checker v-model="activate" :max="2" type="checkbox" default-item-class="default-item"-->
+<!--                 selected-item-class="default-item-selected">-->
+<!--          <checker-item value="1" style="width:35%">停电</checker-item>-->
+<!--          <checker-item value="2" style="width:35%">市电</checker-item>-->
+<!--        </checker>-->
         <div>
           <x-button class="operate-button" type="primary" @click.native="doSearch">搜索</x-button>
           <x-button class="operate-button" type="warn" @click.native="closeSearchDialog">关闭</x-button>
