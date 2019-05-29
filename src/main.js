@@ -85,11 +85,8 @@ const myInfo = r => require.ensure([], () => r(require('./view/user/myInfo.vue')
 const changePassword = r => require.ensure([], () => r(require('./view/user/changePassword.vue')), 'changePassword');
 const customerTable = r => require.ensure([], () => r(require('./view/user/customerTable.vue')), 'customerTable');
 const userTable = r => require.ensure([], () => r(require('./view/user/userTable.vue')), 'userTable');
-const contactTable = r => require.ensure([], () => r(require('./view/user/contactTable.vue')), 'contactTable');
 
 
-//单位相关
-const unitTable = r => require.ensure([], () => r(require('./view/unit/unitTable.vue')), 'unitTable');
 
 //基站
 const stationTable = r => require.ensure([], () => r(require('./view/station/stationTable.vue')), 'stationTable');
@@ -244,20 +241,6 @@ const routes = [
         component: userTable,
         meta: {
           title: '用户列表'
-        }
-      }, {
-        path: '/contactTable',
-        name: 'contactTable',
-        component: contactTable,
-        meta: {
-          title: '联系人列表'
-        }
-      }, {
-        path: '/unitTable',
-        name: 'unitTable',
-        component: unitTable,
-        meta: {
-          title: '单位列表'
         }
       }, {
         path: '/generatorLocations',
