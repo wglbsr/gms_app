@@ -6,8 +6,8 @@
   let dev_mode = true;
   //自动判断是否为开发环境
   if (process.env.NODE_ENV == "development") {
-    // dev_mode = false;
-    dev_mode = true;
+    dev_mode = false;
+    // dev_mode = true;
   } else {
     // dev_mode = true;
     dev_mode = false;
