@@ -1,5 +1,6 @@
 <template>
     <main>
+        <div style="font-size: 1em;padding: 10px;text-align: center">{{generatorData.generatorNo}} {{generatorData.stationName?generatorData.stationName:generatorData.generatorName}}</div>
         <grid :cols="2" :show-lr-borders="false" :show-vertical-dividers="false">
             <grid-item>
                 <div style="width:120px;height:120px;margin: auto;">

@@ -28,6 +28,7 @@
       return {
         username: "",
         password: "",
+        localVersion: process.version,
       }
     },
     mounted: function () {
@@ -40,6 +41,9 @@
       }
     },
     methods: {
+      checkVersion(){
+
+      },
       login: function () {
         if (!this.password || !this.username) {
           this.$vux.toast.show({
