@@ -111,7 +111,6 @@ Vue.use(VueScroller);
 Vue.use(LoadingPlugin);
 Vue.use(ToastPlugin);
 Vue.use(ConfirmPlugin);
-
 // }
 Vue.filter('keepHowManyNum', function (hours, keppNum) {
   if (isNaN(hours) || !hours) {

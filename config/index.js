@@ -48,7 +48,7 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    // CSS Sourcemaps off by default because relative paths are "buggy"
+    // CSS Sourcemaps off by default because relativepwd paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
@@ -58,17 +58,17 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../mobile/index.html'),//网页配置
-    // index: path.resolve(__dirname, '../../gms_mobile/www/index.html'),//、app配置
+    // index: path.resolve(__dirname, '../mobile/index.html'),//网页配置
+    index: path.resolve(__dirname, '../../gms_mobile/www/index.html'),//、app配置
 
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../mobile'),//网页配置
-    // assetsRoot: path.resolve(__dirname, '../../gms_mobile/www'),//app配置、
-    assetsSubDirectory: 'static',//网页配置
-    assetsPublicPath: './',//网页配置
-    // assetsSubDirectory: 'static',//app配置、、
-    // assetsPublicPath: '',//app配置、
+    // assetsRoot: path.resolve(__dirname, '../mobile'),//网页配置
+    assetsRoot: path.resolve(__dirname, '../../gms_mobile/www'),//app配置、
+    // assetsSubDirectory: 'static',//网页配置
+    // assetsPublicPath: './',//网页配置
+    assetsSubDirectory: 'static',//app配置、、
+    assetsPublicPath: '',//app配置、
 
 
     /**
