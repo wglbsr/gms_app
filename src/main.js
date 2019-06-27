@@ -84,8 +84,6 @@ const maintainTable = r => require.ensure([], () => r(require('./view/record/mai
 //用户
 const myInfo = r => require.ensure([], () => r(require('./view/user/myInfo.vue')), 'myInfo');
 const changePassword = r => require.ensure([], () => r(require('./view/user/changePassword.vue')), 'changePassword');
-const customerTable = r => require.ensure([], () => r(require('./view/user/customerTable.vue')), 'customerTable');
-const userTable = r => require.ensure([], () => r(require('./view/user/userTable.vue')), 'userTable');
 
 
 //基站
@@ -246,20 +244,6 @@ const routes = [
                 component: alarmTable,
                 meta: {
                     title: '告警记录'
-                }
-            }, {
-                path: '/customerTable',
-                name: 'customerTable',
-                component: customerTable,
-                meta: {
-                    title: '客户列表'
-                }
-            }, {
-                path: '/userTable',
-                name: 'userTable',
-                component: userTable,
-                meta: {
-                    title: '用户列表'
                 }
             }, {
                 path: '/generatorLocations',

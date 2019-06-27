@@ -21,14 +21,6 @@
     <grid-item label="保养记录" :link="{ path: '/maintainTable'}" class="grid-item">
       <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/table.png">
     </grid-item>
-    <grid-item label="客户列表 " :link="{ path: '/customerTable'}" class="grid-item"
-               v-if="userLevel>=API_DYNY.UserLevel.Admin.level">
-      <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/customer_index.png">
-    </grid-item>
-<!--    <grid-item label="用户列表" :link="{ path: '/userTable'}" class="grid-item">-->
-<!--      <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/user_index.png">-->
-<!--    </grid-item>-->
-
   </grid>
 </template>
 
