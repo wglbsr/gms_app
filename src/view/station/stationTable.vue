@@ -96,6 +96,7 @@
           params.searchContent = this.keyWord;
         }
         this.onFetching = true;
+        console.log(params);
         this.$http.post(this.API_DYNY.GMS.getStationList, params, {emulateJSON: true}).then(res => {
           this.totalNum = res.body.total_num;
           if (!refresh) {

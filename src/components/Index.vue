@@ -25,9 +25,9 @@
                v-if="userLevel>=API_DYNY.UserLevel.Admin.level">
       <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/customer_index.png">
     </grid-item>
-    <grid-item label="用户列表" :link="{ path: '/userTable'}" class="grid-item">
-      <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/user_index.png">
-    </grid-item>
+<!--    <grid-item label="用户列表" :link="{ path: '/userTable'}" class="grid-item">-->
+<!--      <img slot="icon" class="grid-item-img" src="http://www.dy-iot.net/user_index.png">-->
+<!--    </grid-item>-->
 
   </grid>
 </template>

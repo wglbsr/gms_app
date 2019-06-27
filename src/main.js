@@ -9,10 +9,10 @@ import VueScroller from 'vue-scroller'
 import './assets/style/iconfont.css'
 
 import {
-  Actionsheet, XInput, XButton, Grid, GridItem, XTable, LoadMore, Icon, XCircle, Group, PopupRadio, Flexbox,
-  XImg, Alert, Toast, XDialog, ButtonTab, Tabbar, TabbarItem, Divider, Confirm, Cell, Picker, PopupPicker, XSwitch,
-  ButtonTabItem, XHeader, ViewBox, Loading, LoadingPlugin, ToastPlugin, ConfirmPlugin, Datetime, FlexboxItem,
-  Radio, XTextarea, Selector, Checker, CheckerItem
+    Actionsheet, XInput, XButton, Grid, GridItem, XTable, LoadMore, Icon, XCircle, Group, PopupRadio, Flexbox,
+    XImg, Alert, Toast, XDialog, ButtonTab, Tabbar, TabbarItem, Divider, Confirm, Cell, Picker, PopupPicker, XSwitch,
+    ButtonTabItem, XHeader, ViewBox, Loading, LoadingPlugin, ToastPlugin, ConfirmPlugin, Datetime, FlexboxItem,
+    Radio, XTextarea, Selector, Checker, CheckerItem
 } from 'vux'
 
 Vue.component('view-box', ViewBox);
@@ -61,6 +61,7 @@ import API_DYNY from "./DYNY_GMS_API.vue"
 import api_v2 from "./assets/api/v2.js"
 
 import './assets/style/globle.css'
+
 Vue.prototype.API_V2 = api_v2;
 Vue.prototype.API_DYNY = API_DYNY;
 //油机
@@ -87,7 +88,6 @@ const customerTable = r => require.ensure([], () => r(require('./view/user/custo
 const userTable = r => require.ensure([], () => r(require('./view/user/userTable.vue')), 'userTable');
 
 
-
 //基站
 const stationTable = r => require.ensure([], () => r(require('./view/station/stationTable.vue')), 'stationTable');
 const stationInfo = r => require.ensure([], () => r(require('./view/station/stationInfo.vue')), 'stationInfo');
@@ -99,13 +99,13 @@ const GeneratorTableForStation = r => require.ensure([], () => r(require('./view
 /*****!!!!!!******打包需要改为 false*********!!!!********/
 let dev_mode = false;
 if (process.env.NODE_ENV == "development") {
-  dev_mode = true;
+    dev_mode = true;
 }
 /*****!!!!!!******打包需要改为 false*********!!!!********/
 
 if (dev_mode) {
-  Vue.use(VueRouter);
-  Vue.use(VueResource);
+    Vue.use(VueRouter);
+    Vue.use(VueResource);
 }
 Vue.use(VueScroller);
 Vue.use(LoadingPlugin);
@@ -113,263 +113,265 @@ Vue.use(ToastPlugin);
 Vue.use(ConfirmPlugin);
 // }
 Vue.filter('keepHowManyNum', function (hours, keppNum) {
-  if (isNaN(hours) || !hours) {
-    hours = 0;
-  }
-  if (!keppNum) {
-    keppNum = 1;
-  }
-  let temp = Math.pow(10, keppNum);
-  let result = Math.round(Number(hours) * temp) / temp;
-  return result;
+    if (isNaN(hours) || !hours) {
+        hours = 0;
+    }
+    if (!keppNum) {
+        keppNum = 1;
+    }
+    let temp = Math.pow(10, keppNum);
+    let result = Math.round(Number(hours) * temp) / temp;
+    return result;
 });
 //增加date的格式化方法
-Date.prototype.format = function(fmt) {
-  var o = {
-    "M+" : this.getMonth()+1,                 //月份
-    "d+" : this.getDate(),                    //日
-    "h+" : this.getHours(),                   //小时
-    "m+" : this.getMinutes(),                 //分
-    "s+" : this.getSeconds(),                 //秒
-    "q+" : Math.floor((this.getMonth()+3)/3), //季度
-    "S"  : this.getMilliseconds()             //毫秒
-  };
-  if(/(y+)/.test(fmt)) {
-    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
-  }
-  for(var k in o) {
-    if(new RegExp("("+ k +")").test(fmt)){
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+Date.prototype.format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1,                 //月份
+        "d+": this.getDate(),                    //日
+        "h+": this.getHours(),                   //小时
+        "m+": this.getMinutes(),                 //分
+        "s+": this.getSeconds(),                 //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds()             //毫秒
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     }
-  }
-  return fmt;
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
 };
 Vue.filter('timestampToTime', function (timestamp, onlyTime) {
-  let date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-  let year = date.getFullYear() + '-';
-  let month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-  let day = date.getDate();
-  let hours = date.getHours();
-  hours = hours > 9 ? hours : "0" + hours;
-  let min = date.getMinutes();
-  min = min > 9 ? min : "0" + min;
-  let second = date.getSeconds();
-  let finalTime = "";
-  if (onlyTime) {
-    return hours + ':' + min;
-  } else {
-    return year + month + day + ' ' + hours + ':' + min + ":" + second;
-  }
+    let date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    let year = date.getFullYear() + '-';
+    let month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    let day = date.getDate();
+    let hours = date.getHours();
+    hours = hours > 9 ? hours : "0" + hours;
+    let min = date.getMinutes();
+    min = min > 9 ? min : "0" + min;
+    let second = date.getSeconds();
+    let finalTime = "";
+    if (onlyTime) {
+        return hours + ':' + min;
+    } else {
+        return year + month + day + ' ' + hours + ':' + min + ":" + second;
+    }
 });
 
 Vue.filter('translateCurrent', function (current) {
-  let translatedCurrent = ((100 * Math.abs(current - 2.5)) / 0.625) - 3.2;
-  let finalCurrent = translatedCurrent >= 100 || translatedCurrent <= 0 ? 0 : translatedCurrent;
-  return finalCurrent;
+    let translatedCurrent = ((100 * Math.abs(current - 2.5)) / 0.625) - 3.2;
+    let finalCurrent = translatedCurrent >= 100 || translatedCurrent <= 0 ? 0 : translatedCurrent;
+    return finalCurrent;
 });
 const routes = [
-  {
-    path: '/',
-    component: Home,
-    meta: {
-      title: '油机管理系统'
+    {
+        path: '/',
+        component: Home,
+        meta: {
+            title: '油机管理系统'
+        },
+        children: [
+            {
+                path: '/generatorTable',
+                name: 'generatorTable',
+                component: generatorTable,
+                meta: {
+                    title: '油机列表'
+                }
+            },
+            {
+                path: '/generatorStatus',
+                name: 'generatorStatus',
+                component: generatorStatus,
+                meta: {
+                    title: '油机详情'
+                }
+            },
+            {
+                path: '/generatorStatus/maintainLogCreate',
+                name: 'maintainLogCreate',
+                component: maintainLogCreate,
+                meta: {
+                    title: '保养记录'
+                }
+            }, {
+                path: '/Index',
+                name: 'Index',
+                component: Index,
+                meta: {
+                    title: '首页'
+                }
+            }, {
+                path: '/generateTable',
+                name: 'generateTable',
+                component: generateTable,
+                meta: {
+                    title: '发电记录'
+                }
+            }, {
+                path: '/fuelTable',
+                name: 'fuelTable',
+                component: fuelTable,
+                meta: {
+                    title: '油量记录'
+                }
+            }, {
+                path: '/stationTable',
+                name: 'stationTable',
+                component: stationTable,
+                meta: {
+                    title: '基站列表'
+                }
+            }, {
+                path: '/maintainTable',
+                name: 'maintainTable',
+                component: maintainTable,
+                meta: {
+                    title: '保养记录'
+                }
+            }, {
+                path: '/stationInfo',
+                name: 'stationInfo',
+                component: stationInfo,
+                meta: {
+                    title: '基站详情'
+                }
+            }, {
+                path: '/alarmTable',
+                name: 'alarmTable',
+                component: alarmTable,
+                meta: {
+                    title: '告警记录'
+                }
+            }, {
+                path: '/customerTable',
+                name: 'customerTable',
+                component: customerTable,
+                meta: {
+                    title: '客户列表'
+                }
+            }, {
+                path: '/userTable',
+                name: 'userTable',
+                component: userTable,
+                meta: {
+                    title: '用户列表'
+                }
+            }, {
+                path: '/generatorLocations',
+                name: 'generatorLocations',
+                component: generatorLocations,
+                meta: {
+                    title: '全站地图'
+                }
+            }, {
+                path: '/GeneratorTableForStation',
+                name: 'GeneratorTableForStation',
+                component: GeneratorTableForStation,
+                meta: {
+                    title: '关联油机'
+                }
+            }, {
+                path: '/GeneratorModeSwitch',
+                name: 'GeneratorModeSwitch',
+                component: GeneratorModeSwitch,
+                meta: {
+                    title: '模式切换'
+                }
+            },
+            {
+                path: '/myInfo',
+                name: 'myInfo',
+                component: myInfo,
+                meta: {
+                    title: '个人信息'
+                }
+            }, {
+                path: '/changePassword',
+                name: 'changePassword',
+                component: changePassword,
+                meta: {
+                    title: '修改密码'
+                }
+            }, {
+                path: '/generatorInfo',
+                name: 'generatorInfo',
+                component: generatorInfo,
+                meta: {
+                    title: '油机信息'
+                }
+            },
+
+
+            //generatorLocations
+        ],
     },
-    children: [
-      {
-        path: '/generatorTable',
-        name: 'generatorTable',
-        component: generatorTable,
-        meta: {
-          title: '油机列表'
-        }
-      },
-      {
-        path: '/generatorStatus',
-        name: 'generatorStatus',
-        component: generatorStatus,
-        meta: {
-          title: '油机详情'
-        }
-      },
-      {
-        path: '/generatorStatus/maintainLogCreate',
-        name: 'maintainLogCreate',
-        component: maintainLogCreate,
-        meta: {
-          title: '保养记录'
-        }
-      }, {
-        path: '/Index',
-        name: 'Index',
-        component: Index,
-        meta: {
-          title: '首页'
-        }
-      }, {
-        path: '/generateTable',
-        name: 'generateTable',
-        component: generateTable,
-        meta: {
-          title: '发电记录'
-        }
-      }, {
-        path: '/fuelTable',
-        name: 'fuelTable',
-        component: fuelTable,
-        meta: {
-          title: '油量记录'
-        }
-      }, {
-        path: '/stationTable',
-        name: 'stationTable',
-        component: stationTable,
-        meta: {
-          title: '基站列表'
-        }
-      }, {
-        path: '/maintainTable',
-        name: 'maintainTable',
-        component: maintainTable,
-        meta: {
-          title: '保养记录'
-        }
-      }, {
-        path: '/stationInfo',
-        name: 'stationInfo',
-        component: stationInfo,
-        meta: {
-          title: '基站详情'
-        }
-      }, {
-        path: '/alarmTable',
-        name: 'alarmTable',
-        component: alarmTable,
-        meta: {
-          title: '告警记录'
-        }
-      }, {
-        path: '/customerTable',
-        name: 'customerTable',
-        component: customerTable,
-        meta: {
-          title: '客户列表'
-        }
-      }, {
-        path: '/userTable',
-        name: 'userTable',
-        component: userTable,
-        meta: {
-          title: '用户列表'
-        }
-      }, {
-        path: '/generatorLocations',
-        name: 'generatorLocations',
-        component: generatorLocations,
-        meta: {
-          title: '全站地图'
-        }
-      }, {
-        path: '/GeneratorTableForStation',
-        name: 'GeneratorTableForStation',
-        component: GeneratorTableForStation,
-        meta: {
-          title: '关联油机'
-        }
-      }, {
-        path: '/GeneratorModeSwitch',
-        name: 'GeneratorModeSwitch',
-        component: GeneratorModeSwitch,
-        meta: {
-          title: '模式切换'
-        }
-      },
-      {
-        path: '/myInfo',
-        name: 'myInfo',
-        component: myInfo,
-        meta: {
-          title: '个人信息'
-        }
-      }, {
-        path: '/changePassword',
-        name: 'changePassword',
-        component: changePassword,
-        meta: {
-          title: '修改密码'
-        }
-      }, {
-        path: '/generatorInfo',
-        name: 'generatorInfo',
-        component: generatorInfo,
-        meta: {
-          title: '油机信息'
-        }
-      },
-
-
-      //generatorLocations
-    ],
-  },
-  {
-    path: '/Login',
-    component: Login
-  },
+    {
+        path: '/Login',
+        component: Login
+    },
 
 
 ];
 
 const router = new VueRouter({
-  routes
+    routes
 });
 router.beforeEach((to, from, next) => {
-  //to即将进入的目标路由对象，from当前导航正要离开的路由， next : 下一步执行的函数钩子
-  if (to.path === '/Login') {
-    next()
-  } // 如果即将进入登录路由，则直接放行
-  else {   //进入的不是登录路由
-    if (!sessionStorage.getItem('user')) {
-      next({path: '/Login'})
+    //to即将进入的目标路由对象，from当前导航正要离开的路由， next : 下一步执行的函数钩子
+    if (to.path === '/Login') {
+        next()
+    } // 如果即将进入登录路由，则直接放行
+    else {   //进入的不是登录路由
+        if (!sessionStorage.getItem('AUTH_TOKEN')) {
+            next({path: '/Login'})
+        }
+        //下一跳路由需要登录验证，并且还未登录，则路由定向到 登录路由
+        else {
+            next()
+        }
     }
-    //下一跳路由需要登录验证，并且还未登录，则路由定向到 登录路由
-    else {
-      next()
-    }
-  }
-  //如果不需要登录验证，或者已经登录成功，则直接放行
+    //如果不需要登录验证，或者已经登录成功，则直接放行
 });
 
 /**
  * 拦截器
  */
 Vue.http.interceptors.push((request, next) => {
-  let customerNo = sessionStorage.getItem("customerNo");
-  let username = sessionStorage.getItem("user");
-  let userLevel = sessionStorage.getItem("userLevel");
-  let token = sessionStorage.getItem("AUTH_TOKEN");
-  if (token) {
-    request.headers.set('AUTH_TOKEN', token)
-  }
-  if (!request.body.customerNo) {
-    request.body.customerNo = customerNo;
-  }
-  if (!request.body.user_cus) {
-    request.body.user_cus = customerNo;
-  }
-  if (!request.body.username) {
-    request.body.username = username;
-  }
-  if (!request.body.userName) {
-    request.body.userName = username;
-  }
-  if (!request.body.user_no) {
-    request.body.user_no = username;
-  }
-  if (!request.body.userLevel) {
-    request.body.userLevel = userLevel;
-  }
-  next((response) => {
-    return response;
-  });
+    let customerNo = sessionStorage.getItem("customerNo");
+    let username = sessionStorage.getItem("user");
+    let userLevel = sessionStorage.getItem("userLevel");
+    let token = sessionStorage.getItem("AUTH_TOKEN");
+    if (token) {
+        request.headers.set('AUTH_TOKEN', token)
+    }else{
+
+    }
+    // if (!request.body.customerNo && customerNo) {
+    //     request.body.customerNo = customerNo;
+    // }
+    // if (!request.body.user_cus && customerNo) {
+    //     request.body.user_cus = customerNo;
+    // }
+    // if (!request.body.username && username) {
+    //     request.body.username = username;
+    // }
+    // if (!request.body.userName && username) {
+    //     request.body.userName = username;
+    // }
+    // if (!request.body.user_no && username) {
+    //     request.body.user_no = username;
+    // }
+    // if (!request.body.userLevel && userLevel) {
+    //     request.body.userLevel = userLevel;
+    // }
+    next((response) => {
+        return response;
+    });
 });
 
 FastClick.attach(document.body);
@@ -377,22 +379,22 @@ FastClick.attach(document.body);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
-console.log("dev_mode:"+dev_mode);
+// console.log("dev_mode:"+dev_mode);
 if (!dev_mode) {
-  document.addEventListener('deviceready', function () {
-    new Vue({
-      el: '#app',
-      router,
-      store,
-      template: '<App/>',
-      components: {App}
-    });
-    window.navigator.splashscreen.hide()
-  }, false);
+    document.addEventListener('deviceready', function () {
+        new Vue({
+            el: '#app',
+            router,
+            store,
+            template: '<App/>',
+            components: {App}
+        });
+        window.navigator.splashscreen.hide()
+    }, false);
 }
 
 
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    render: h => h(App)
 }).$mount('#app-box');
