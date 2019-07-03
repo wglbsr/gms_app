@@ -50,7 +50,7 @@
         scrollTop: 0,
         onFetching: false,
         generatorData: [],
-        customerNo: sessionStorage.getItem("usercus"),
+        customerNo: localStorage.getItem("usercus"),
         cellValColor: "#27b151",
         onlineLabel: "",
         generatingLabel: "",

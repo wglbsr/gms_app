@@ -29,8 +29,8 @@
         relatedGeneratorListStr: "",
         relatedGeneratorList: [],
         showGeneratorDialog: false,
-        customerNo: '',// sessionStorage.getItem("usercus"),
-        userLevel: 200,//sessionStorage.getItem("userLevel"),
+        customerNo: '',// localStorage.getItem("usercus"),
+        userLevel: 200,//localStorage.getItem("userLevel"),
         generatorData: [],
         keyWord: "",
 

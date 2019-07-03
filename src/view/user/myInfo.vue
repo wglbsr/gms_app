@@ -36,11 +36,12 @@
     },
     methods: {
       logout: function () {
-        sessionStorage.removeItem("user");
-        sessionStorage.removeItem("userLevel");
-        sessionStorage.removeItem("usercus");
-        localStorage.removeItem("username");
-        localStorage.removeItem("password")
+        localStorage.clear()
+        // localStorage.removeItem("user");
+        // localStorage.removeItem("userLevel");
+        // localStorage.removeItem("usercus");
+        // localStorage.removeItem("username");
+        // localStorage.removeItem("password")
         this.$router.push('/login');
       },
       // onCancel: function () {

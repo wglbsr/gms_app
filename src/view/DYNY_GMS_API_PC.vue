@@ -980,7 +980,7 @@
       let TIMEOUT_MIN = 3;
       let timeout = TIMEOUT_MIN * 60 * 1000;
       let nowTimestamp = new Date().valueOf();
-      let onlineTimeout = sessionStorage.getItem("onlineTimeout");
+      let onlineTimeout = localStorage.getItem("onlineTimeout");
       if (onlineTimeout) {
         timeout = onlineTimeout * 1000;
       }

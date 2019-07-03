@@ -31,7 +31,7 @@
       return {
         onFetching: false,
         generatorData: [],
-        customerNo: sessionStorage.getItem("usercus"),
+        customerNo: localStorage.getItem("usercus"),
         activate: true,
         inactivate: true,
         searchContent: null,

@@ -41,7 +41,7 @@
           return;
         }
         this.$http.post(this.API_DYNY.GMS.changePassword, {
-            username: sessionStorage.getItem("user"),
+            username: localStorage.getItem("user"),
             oldPassword: this.oldPassword,
             newPassword: this.password1,
           }, {emulateJSON: true}

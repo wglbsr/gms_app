@@ -28,7 +28,7 @@
             return {
                 onFetching: false,
                 maintainLogData: [],
-                customerNo: sessionStorage.getItem("usercus"),
+                customerNo: localStorage.getItem("usercus"),
                 totalNum: 0,
                 pageNum: 0,
                 pageSize: 20,

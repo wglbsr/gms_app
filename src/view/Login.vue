@@ -53,7 +53,6 @@
         },
         methods: {
             closeDialog() {
-
                 this.appDownloadDialogVisible = false;
             },
             checkVersion(success) {
@@ -80,10 +79,10 @@
                         localStorage.setItem('user', user);
                         localStorage.setItem('username', this.username);
                         localStorage.setItem('password', this.password);
-                        sessionStorage.setItem('user', user);
-                        sessionStorage.setItem('AUTH_TOKEN', res.data.data.AUTH_TOKEN);
-                        sessionStorage.setItem('userLevel', res.data.data.userlevel);
-                        sessionStorage.setItem('usercus', res.data.data.usercus);
+                        localStorage.setItem('user', user);
+                        localStorage.setItem('AUTH_TOKEN', res.data.data.AUTH_TOKEN);
+                        localStorage.setItem('userLevel', res.data.data.userlevel);
+                        localStorage.setItem('usercus', res.data.data.usercus);
                         this.$router.push('/');
                     } else {
                         this.$vux.toast.show({

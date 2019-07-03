@@ -142,8 +142,8 @@
                 st_state: "",
                 btnTimeout: 20,
                 btnDisabled: false,
-                customerNo: sessionStorage.getItem("usercus"),
-                username: sessionStorage.getItem("user"),
+                customerNo: localStorage.getItem("usercus"),
+                username: localStorage.getItem("user"),
                 getDataTimer: null,
                 generatorData:
                     {

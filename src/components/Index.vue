@@ -29,7 +29,7 @@
   export default {
     data() {
       return {
-        userLevel: sessionStorage.getItem("userLevel"),
+        userLevel: localStorage.getItem("userLevel"),
 
       }
     },

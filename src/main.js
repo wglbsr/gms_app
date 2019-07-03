@@ -311,7 +311,7 @@ router.beforeEach((to, from, next) => {
         next()
     } // 如果即将进入登录路由，则直接放行
     else {   //进入的不是登录路由
-        if (!sessionStorage.getItem('AUTH_TOKEN')) {
+        if (!localStorage.getItem('AUTH_TOKEN')) {
             next({path: '/Login'})
         }
         //下一跳路由需要登录验证，并且还未登录，则路由定向到 登录路由
@@ -326,34 +326,22 @@ router.beforeEach((to, from, next) => {
  * 拦截器
  */
 Vue.http.interceptors.push((request, next) => {
-    let customerNo = sessionStorage.getItem("customerNo");
-    let username = sessionStorage.getItem("user");
-    let userLevel = sessionStorage.getItem("userLevel");
-    let token = sessionStorage.getItem("AUTH_TOKEN");
+    let customerNo = localStorage.getItem("customerNo");
+    let username = localStorage.getItem("user");
+    let userLevel = localStorage.getItem("userLevel");
+    let token = localStorage.getItem("AUTH_TOKEN");
     if (token) {
         request.headers.set('AUTH_TOKEN', token)
     }else{
-
+        next(vm => {
+            localStorage.clear();
+            vm.$router.push("/login");
+        })
     }
-    // if (!request.body.customerNo && customerNo) {
-    //     request.body.customerNo = customerNo;
-    // }
-    // if (!request.body.user_cus && customerNo) {
-    //     request.body.user_cus = customerNo;
-    // }
-    // if (!request.body.username && username) {
-    //     request.body.username = username;
-    // }
-    // if (!request.body.userName && username) {
-    //     request.body.userName = username;
-    // }
-    // if (!request.body.user_no && username) {
-    //     request.body.user_no = username;
-    // }
-    // if (!request.body.userLevel && userLevel) {
-    //     request.body.userLevel = userLevel;
-    // }
     next((response) => {
+        if (response.body.errorCode == 401) {
+            localStorage.clear();
+        }
         return response;
     });
 });

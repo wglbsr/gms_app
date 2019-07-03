@@ -33,7 +33,7 @@
       return {
         onFetching: false,
         showSearchDialog: false,
-        customerNo: sessionStorage.getItem("usercus"),
+        customerNo: localStorage.getItem("usercus"),
         onlineLabel: "",
         stationData: [],
         totalNum: 0,

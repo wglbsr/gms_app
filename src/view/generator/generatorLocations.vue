@@ -40,8 +40,8 @@
         selectedMachNo: "",
         selectedMachObj: null,
         selectedMachIsOnline: false,
-        customerNo: sessionStorage.getItem("usercus"),
-        username: sessionStorage.getItem("user"),
+        customerNo: localStorage.getItem("usercus"),
+        username: localStorage.getItem("user"),
         mapSize: {
           width: "100%",
           height: window.innerHeight - 50 + "px",

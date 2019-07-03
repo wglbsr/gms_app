@@ -29,7 +29,7 @@
             return {
                 onFetching: false,
                 generateLogData: [],
-                customerNo: sessionStorage.getItem("usercus"),
+                customerNo: localStorage.getItem("usercus"),
                 onlineLabel: "",
                 totalNum: 0,
                 pageNum: 0,

@@ -20,7 +20,7 @@
                 maintainType: 99,
                 list: [{key: '1', value: '更换机油'}, {key: '99', value: '其他'}],
                 generatorNo: this.$route.query.generatorNo,
-                username: sessionStorage.getItem("user"),
+                username: localStorage.getItem("user"),
                 content: "",
             }
         },

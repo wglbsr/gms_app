@@ -38,7 +38,7 @@
         warningType: "0",
         onFetching: false,
         showSearchDialog: false,
-        customerNo: sessionStorage.getItem("usercus"),
+        customerNo: localStorage.getItem("usercus"),
         warningTypeOptions: [],
         onlineLabel: "",
         warningData: [],

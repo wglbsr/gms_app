@@ -30,8 +30,8 @@
   export default {
     data() {
       return {
-        userLevel: sessionStorage.getItem("userLevel"),
-        customerNo: sessionStorage.getItem("usercus"),
+        userLevel: localStorage.getItem("userLevel"),
+        customerNo: localStorage.getItem("usercus"),
         fuelOptions: [],
         currentOptions: [],
         editMode: this.$route.query.editMode,
