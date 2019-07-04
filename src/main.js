@@ -326,9 +326,6 @@ router.beforeEach((to, from, next) => {
  * 拦截器
  */
 Vue.http.interceptors.push((request, next) => {
-    let customerNo = localStorage.getItem("customerNo");
-    let username = localStorage.getItem("user");
-    let userLevel = localStorage.getItem("userLevel");
     let token = localStorage.getItem("AUTH_TOKEN");
     if (token) {
         request.headers.set('AUTH_TOKEN', token)

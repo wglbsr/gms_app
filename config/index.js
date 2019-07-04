@@ -57,19 +57,22 @@ module.exports = {
   },
 
   build: {
-    // Template for index.html
-    // index: path.resolve(__dirname, '../mobile/index.html'),//网页配置
-    index: path.resolve(__dirname, '../../gms_mobile/www/index.html'),//、app配置
-
-
     // Paths
-    // assetsRoot: path.resolve(__dirname, '../mobile'),//网页配置
-    assetsRoot: path.resolve(__dirname, '../../gms_mobile/www'),//app配置、
-    // assetsSubDirectory: 'static',//网页配置
-    // assetsPublicPath: './',//网页配置
-    assetsSubDirectory: 'static',//app配置、、
-    assetsPublicPath: '',//app配置、
+    assetsSubDirectory: 'static',//通用配置
 
+
+    // Template for index.html
+    //网页配置
+    // index: path.resolve(__dirname, '../mobile/index.html'),
+    // assetsRoot: path.resolve(__dirname, '../mobile'),
+    // assetsPublicPath: './',
+    //网页配置
+
+    //app配置
+    index: path.resolve(__dirname, '../../gms_mobile/www/index.html'),
+    assetsRoot: path.resolve(__dirname, '../../gms_mobile/www'),
+    assetsPublicPath: '',
+    //app配置
 
     /**
      * Source Maps

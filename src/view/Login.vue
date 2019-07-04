@@ -49,7 +49,6 @@
                 this.username = username;
                 this.login();
             }
-            // this.checkVersion(this.login);
         },
         methods: {
             closeDialog() {
@@ -74,7 +73,7 @@
                     password: this.password
                 }, {emulateJSON: true}).then(res => {
                     if (res.data.result) {
-                        console.log(res.body);
+                        localStorage.clear();
                         let user = res.body.username;
                         localStorage.setItem('user', user);
                         localStorage.setItem('username', this.username);
