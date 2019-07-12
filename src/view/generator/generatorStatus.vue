@@ -1,6 +1,8 @@
 <template>
     <main>
-        <div style="font-size: 1em;padding: 10px;text-align: center">{{generatorData.generatorNo}} {{generatorData.stationName?generatorData.stationName:generatorData.generatorName}}</div>
+        <div style="font-size: 1em;padding: 10px;text-align: center">{{generatorData.generatorNo}}
+            {{generatorData.stationName?generatorData.stationName:generatorData.generatorName}}
+        </div>
         <grid :cols="2" :show-lr-borders="false" :show-vertical-dividers="false">
             <grid-item>
                 <div style="width:120px;height:120px;margin: auto;">
@@ -93,15 +95,18 @@
         <grid style=" margin-bottom: 50px;" :cols="4" :show-lr-borders="false" :show-vertical-dividers="false"
               v-if="generatorData.boardVersion==0">
             <grid-item>
-                <div class="box-div iconfont icon-dianhuo" @click="startGenerator"></div>
+                <div v-bind:class="[generatorData.pro_mode ? 'button-disabled' : '', 'box-div','iconfont','icon-dianhuo']"
+                     @click="startGenerator"></div>
                 <div class="text-align-center">启动</div>
             </grid-item>
             <grid-item>
-                <div class="box-div iconfont icon-tingzhi" @click="stopGenerator"></div>
+                <div v-bind:class="[generatorData.pro_mode ? 'button-disabled' : '', 'box-div','iconfont','icon-tingzhi']"
+                     @click="stopGenerator"></div>
                 <div style="text-align: center ">熄火</div>
             </grid-item>
             <grid-item>
-                <div class="box-div iconfont icon-qiehuan" @click="openModeSwitchDialog"></div>
+                <div v-bind:class="[generatorData.pro_mode ? 'button-disabled' : '', 'box-div','iconfont','icon-qiehuan']"
+                     @click="openModeSwitchDialog"></div>
                 <div style="text-align: center ">模式切换</div>
             </grid-item>
             <grid-item>
@@ -117,11 +122,13 @@
                 <div style="text-align: center ">手动加油</div>
             </grid-item>
             <grid-item>
-                <div class="box-div iconfont icon-unlock" @click="lockFuelTank"></div>
+                <div v-bind:class="[generatorData.pro_mode ? 'button-disabled' : '', 'box-div','iconfont','icon-unlock']"
+                     @click="lockFuelTank"></div>
                 <div style="text-align: center ">油箱开锁</div>
             </grid-item>
             <grid-item>
-                <div class="box-div iconfont icon-lock" @click="lockFuelTank('true')"></div>
+                <div v-bind:class="[generatorData.pro_mode ? 'button-disabled' : '', 'box-div','iconfont','icon-lock']"
+                     @click="lockFuelTank('true')"></div>
                 <div style="text-align: center ">油箱上锁</div>
             </grid-item>
             <grid-item>
@@ -252,6 +259,14 @@
                     });
                     return;
                 }
+                if (this.generatorData.pro_mode) {
+                    this.$vux.toast.show({
+                        text: '维护模式下不能操作!',
+                        type: "cancel",
+                        time: 3000,
+                    });
+                    return;
+                }
                 if (lock) {
                     this.API_DYNY.utils.sendOperate(this.generatorNo, this.API_DYNY.CMD.lockFuelTankCmd.cmd,
                         this.API_DYNY.CMD.lockFuelTankCmd.no, this.username, this);
@@ -320,6 +335,15 @@
                     });
                     return;
                 }
+
+                if (this.generatorData.pro_mode) {
+                    this.$vux.toast.show({
+                        text: '维护模式下不能操作!',
+                        type: "cancel",
+                        time: 3000,
+                    });
+                    return;
+                }
                 this.$vux.confirm.show({
                     title: '启动油机',
                     content: '确定启动油机吗?',
@@ -342,6 +366,15 @@
                 if (this.btnDisabled) {
                     this.$vux.toast.show({
                         text: '每次命令发送间隔不能小于' + that.btnTimeout + '秒!',
+                        type: "cancel",
+                        time: 3000,
+                    });
+                    return;
+                }
+
+                if (this.generatorData.pro_mode) {
+                    this.$vux.toast.show({
+                        text: '维护模式下不能操作!',
                         type: "cancel",
                         time: 3000,
                     });
@@ -375,6 +408,14 @@
                     });
                     return;
                 }
+                if (this.generatorData.pro_mode) {
+                    this.$vux.toast.show({
+                        text: '维护模式下不能操作!',
+                        type: "cancel",
+                        time: 3000,
+                    });
+                    return;
+                }
                 that.setCountDown();
                 this.$router.push({path: 'GeneratorModeSwitch', query: {generatorNo: this.machNo}});
             },
@@ -389,7 +430,7 @@
                     return;
                 }
                 that.setCountDown();
-                let proMode = this.generatorData.pro_mode;
+                let proMode = that.generatorData.pro_mode;
                 let content = proMode ? "当前为维护模式,是否确定退出?" : "是否确定进入维护模式?";
                 this.$vux.confirm.show({
                     title: '维护模式',
@@ -486,6 +527,10 @@
         height: 100%;
         width: 100%;
         overflow-x: hidden;
+    }
+
+    .button-disabled {
+        background-color: gainsboro;;
     }
 
     .dialog-button-submit {

@@ -63,15 +63,15 @@ module.exports = {
 
     // Template for index.html
     //网页配置
-    // index: path.resolve(__dirname, '../mobile/index.html'),
-    // assetsRoot: path.resolve(__dirname, '../mobile'),
-    // assetsPublicPath: './',
+    index: path.resolve(__dirname, '../mobile/index.html'),
+    assetsRoot: path.resolve(__dirname, '../mobile'),
+    assetsPublicPath: './',
     //网页配置
 
     //app配置
-    index: path.resolve(__dirname, '../../gms_mobile/www/index.html'),
-    assetsRoot: path.resolve(__dirname, '../../gms_mobile/www'),
-    assetsPublicPath: '',
+    // index: path.resolve(__dirname, '../../gms_mobile/www/index.html'),
+    // assetsRoot: path.resolve(__dirname, '../../gms_mobile/www'),
+    // assetsPublicPath: '',
     //app配置
 
     /**
